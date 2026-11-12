@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio de Christian MAKEMBE — étudiant en informatique et cybersécurité.">
+<title>Christian MAKEMBE | Cybersecurity Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root{
+  --bg:#070714;
+  --bg2:#0d0b1f;
+  --card:rgba(20,18,43,.70);
+  --card2:rgba(28,23,57,.65);
+  --text:#f8f7ff;
+  --muted:#a7a3c1;
+  --purple:#9b5cff;
+  --pink:#ff4fd8;
+  --cyan:#25e7ff;
+  --blue:#5577ff;
+  --green:#46f6a2;
+  --yellow:#ffd166;
+  --border:rgba(255,255,255,.12);
+  --shadow:0 30px 80px rgba(0,0,0,.45);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 15%,rgba(155,92,255,.22),transparent 28%),
+    radial-gradient(circle at 85% 15%,rgba(37,231,255,.16),transparent 25%),
+    radial-gradient(circle at 50% 90%,rgba(255,79,216,.12),transparent 30%),
+    var(--bg);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:45px 45px;
+  mask-image:linear-gradient(to bottom,black,transparent);
+}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+.container{width:min(1180px,92%);margin:auto}
+
+/* NAVIGATION */
+.navbar{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  width:min(1130px,92%);z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 12px;
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:rgba(7,7,20,.72);
+  backdrop-filter:blur(22px);
+  box-shadow:0 15px 50px rgba(0,0,0,.3);
+}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800}
+.logo-box{
+  width:40px;height:40px;border-radius:13px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  box-shadow:0 0 30px rgba(155,92,255,.35);
+}
+.logo span:last-child{font-size:13px;letter-spacing:.5px}
+.nav-links{display:flex;gap:4px}
+.nav-links a{
+  padding:10px 13px;border-radius:12px;color:var(--muted);
+  font-size:12px;font-weight:700;transition:.25s;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:white;background:linear-gradient(135deg,rgba(155,92,255,.22),rgba(37,231,255,.10));
+}
+.menu{display:none;border:0;background:none;color:white;font-size:23px;cursor:pointer}
+
+/* HERO */
+section{padding:105px 0 45px;scroll-margin-top:90px}
+.hero{min-height:100vh;padding-top:150px;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(37,231,255,.25);
+  background:rgba(37,231,255,.07);
+  color:var(--cyan);border-radius:999px;padding:8px 13px;
+  font:700 10px "Space Mono",monospace;letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:24px;
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 16px var(--green)}
+h1{
+  font-size:clamp(42px,5.5vw,72px);
+  line-height:1.05;letter-spacing:-3px;
+}
+.gradient{
+  background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-text{
+  color:var(--muted);font-size:18px;line-height:1.8;
+  max-width:680px;margin:27px 0;
+}
+.hero-text strong{color:white}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 19px;border-radius:13px;border:1px solid var(--border);
+  font-size:13px;font-weight:800;transition:.25s;cursor:pointer;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{
+  border:none;color:white;
+  background:linear-gradient(100deg,var(--purple),var(--pink));
+  box-shadow:0 12px 35px rgba(155,92,255,.25);
+}
+.btn-secondary{background:rgba(255,255,255,.035)}
+
+.hero-card{
+  position:relative;border:1px solid var(--border);border-radius:30px;
+  padding:22px;background:linear-gradient(145deg,rgba(30,23,63,.9),rgba(9,9,24,.75));
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.hero-card:before{
+  content:"";position:absolute;width:220px;height:220px;
+  right:-90px;top:-80px;background:var(--pink);filter:blur(100px);opacity:.22;
+}
+.avatar{
+  width:100%;height:330px;border-radius:22px;
+  display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(circle at 30% 30%,rgba(37,231,255,.25),transparent 25%),
+    radial-gradient(circle at 70% 70%,rgba(255,79,216,.30),transparent 25%),
+    linear-gradient(135deg,#17122f,#0a1024);
+  border:1px solid rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.avatar:after{
+  content:"CYBER";
+  position:absolute;bottom:-28px;right:-5px;
+  font-size:100px;font-weight:900;letter-spacing:-8px;
+  color:rgba(255,255,255,.025);
+}
+.avatar-icon{
+  width:145px;height:145px;border-radius:50%;
+  display:grid;place-items:center;font-size:58px;font-weight:900;
+  color:white;
+  background:linear-gradient(135deg,var(--purple),var(--pink),var(--cyan));
+  box-shadow:0 0 80px rgba(155,92,255,.45);
+}
+.hero-info{display:flex;justify-content:space-between;gap:12px;margin-top:16px}
+.stat{flex:1;padding:13px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.03)}
+.stat b{display:block;font-size:18px}.stat small{color:var(--muted);font-size:10px}
+
+/* SECTION HEADERS */
+.section-head{
+  display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:32px
+}
+.kicker{
+  font:700 11px "Space Mono",monospace;color:var(--cyan);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:9px;
+}
+h2{font-size:clamp(34px,5vw,53px);letter-spacing:-3px;line-height:1}
+.section-head>p{max-width:520px;color:var(--muted);line-height:1.75;font-size:14px}
+
+/* CARDS */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.card{
+  border:1px solid var(--border);border-radius:23px;padding:25px;
+  background:linear-gradient(145deg,rgba(27,23,54,.75),rgba(12,12,30,.72));
+  box-shadow:0 15px 45px rgba(0,0,0,.18);
+  transition:.3s;position:relative;overflow:hidden;
+}
+.card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(155,92,255,.35);
+  box-shadow:0 25px 65px rgba(0,0,0,.3);
+}
+.card:before{
+  content:"";position:absolute;width:100px;height:100px;right:-50px;top:-50px;
+  background:var(--purple);filter:blur(50px);opacity:.12;
+}
+.icon{
+  width:48px;height:48px;border-radius:15px;display:grid;place-items:center;
+  font-size:21px;margin-bottom:18px;
+  background:linear-gradient(135deg,rgba(155,92,255,.18),rgba(37,231,255,.10));
+  border:1px solid rgba(155,92,255,.25);
+}
+.card h3{font-size:18px;margin-bottom:10px}
+.card p{color:var(--muted);font-size:13px;line-height:1.75}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:17px}
+.tag{
+  padding:6px 9px;border-radius:8px;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  color:#cbc8dc;font:600 10px "Space Mono",monospace;
+}
+
+/* SKILLS */
+.skill-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}
+.skill-item{margin:21px 0}
+.skill-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px}
+.skill-row span:last-child{font:700 11px "Space Mono",monospace;color:var(--cyan)}
+.bar{height:8px;background:#19172b;border-radius:20px;overflow:hidden}
+.bar i{
+  display:block;width:var(--w);height:100%;border-radius:20px;
+  background:linear-gradient(90deg,var(--cyan),var(--blue),var(--purple),var(--pink));
+  box-shadow:0 0 15px rgba(155,92,255,.35);
+}
+
+/* PROJECTS */
+.projects{grid-template-columns:repeat(2,1fr)}
+.project{min-height:295px;display:flex;flex-direction:column;justify-content:space-between}
+.project-top{display:flex;justify-content:space-between}
+.number{font:700 11px "Space Mono";color:#66627c}
+.project h3{font-size:25px;margin:24px 0 10px}
+.project-link{color:var(--cyan);font-weight:800;font-size:12px}
+.project-visual{
+  height:110px;margin-top:20px;border-radius:15px;
+  display:flex;align-items:center;justify-content:center;
+  font:700 12px "Space Mono";color:#d8d4e8;
+  background:
+    linear-gradient(135deg,rgba(155,92,255,.18),rgba(255,79,216,.12)),
+    repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 1px,transparent 1px 9px);
+}
+
+/* STYLES DE LA SECTION PARCOURS */
+.session-card{
+  border:1px solid var(--border);border-radius:23px;padding:30px;
+  background:linear-gradient(145deg,rgba(27,23,54,.75),rgba(12,12,30,.72));
+  box-shadow:0 15px 45px rgba(0,0,0,.18);
+  margin-bottom:25px;position:relative;overflow:hidden;
+}
+.session-card h3{
+  font-size:22px;color:var(--pink);margin-bottom:20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.session-badge{
+  font:700 10px "Space Mono",monospace;padding:4px 10px;border-radius:8px;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--cyan);
+}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:15px}
+.course-box{
+  border:1px solid rgba(255,255,255,.06);border-radius:15px;padding:18px;
+  background:rgba(10,10,25,.5);
+}
+.course-code{font:700 11px "Space Mono",monospace;color:var(--cyan);display:block;margin-bottom:5px}
+.course-title{font-size:15px;font-weight:700;color:white;margin-bottom:8px}
+.course-desc{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* CONTACT */
+.contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}
+.contact-line{
+  display:flex;align-items:center;gap:13px;padding:14px;
+  margin-top:11px;border:1px solid var(--border);border-radius:14px;
+  background:rgba(255,255,255,.025);
+}
+.contact-line .icon{margin:0;width:42px;height:42px;font-size:16px}
+.contact-line b{font-size:12px;display:block}
+.contact-line span{font-size:11px;color:var(--muted)}
+form{display:grid;gap:11px}
+input,textarea{
+  width:100%;border:1px solid var(--border);border-radius:13px;
+  padding:14px;background:rgba(4,4,15,.65);color:white;outline:none;
+}
+input:focus,textarea:focus{border-color:rgba(37,231,255,.45);box-shadow:0 0 0 3px rgba(37,231,255,.06)}
+textarea{min-height:145px;resize:vertical}
+
+/* FOOTER */
+footer{margin-top:65px;padding:35px 0;border-top:1px solid var(--border);color:#77738e;font-size:11px}
+.footer-flex{display:flex;justify-content:space-between;gap:20px}
+
+/* ANIMATION */
+.reveal{opacity:0;transform:translateY(22px);transition:.75s ease}
+.reveal.show{opacity:1;transform:none}
+.float{animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+/* MOBILE */
+@media(max-width:880px){
+  .nav-links{display:none;position:absolute;top:65px;left:0;right:0;flex-direction:column;padding:10px;background:rgba(7,7,20,.97);border:1px solid var(--border);border-radius:17px}
+  .nav-links.open{display:flex}.menu{display:block}
+  .hero-grid,.skill-layout,.contact{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .projects{grid-template-columns:1fr}
+  .hero{padding-top:145px}
+}
+@media(max-width:560px){
+  h1{letter-spacing:-3px}
+  .grid{grid-template-columns:1fr}
+  .section-head{display:block}
+  .section-head>p{margin-top:13px}
+  .hero-text{font-size:16px}
+  .avatar{height:280px}
+  .footer-flex{display:block}.footer-flex span{display:block;margin-top:7px}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <a class="logo" href="#accueil">
+    <span class="logo-box">C</span>
+    <span>Christian MAKEMBE</span>
+  </a>
+
+  <div class="nav-links" id="navLinks">
+    <a class="active" href="#accueil">Accueil</a>
+    <a href="#profil">Profil</a>
+    <a href="#competences">Compétences</a>
+    <a href="#projets">Projets</a>
+    <a href="#parcours">Parcours</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <button class="menu" id="menu">☰</button>
+</nav>
+
+<main>
+
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="badge"><span class="pulse"></span> étudiant · informatique · cybersécurité</div>
+
+      <h1>
+        Confidentialité<br>
+        <span class="gradient">Intégrité</span><br>
+        Disponibilité
+      </h1>
+
+      <p class="hero-text">
+        Salut, moi c'est <strong>Christian MAKEMBE</strong>. Je suis étudiant en informatique avec un intérêt particulier pour la
+        <strong>cybersécurité</strong>, les réseaux, Linux et la programmation.
+        Je transforme ce que j'apprends en projets concrets.
+      </p>
+
+      <div class="buttons">
+        <a href="#projets" class="btn btn-primary">Découvrir mes projets ↗</a>
+        <a href="#contact" class="btn btn-secondary">Me contacter</a>
+      </div>
+    </div>
+
+    <div class="hero-card reveal float">
+      <div class="avatar">
+        <div class="avatar-icon">C</div>
+      </div>
+
+      <div class="hero-info">
+        <div class="stat"><b>01</b><small>Passion</small></div>
+        <div class="stat"><b>∞</b><small>Curiosité</small></div>
+        <div class="stat"><b>24/7</b><small>Learning</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="profil">
+<div class="container">
+  <div class="section-head reveal">
+    <div>
+      <div class="kicker">01 / Profil</div>
+      <h2>Un étudiant qui<br>pense comme un hacker.</h2>
+    </div>
+    <p>
+      Comprendre avant de reproduire. Tester avant de supposer.
+      Documenter avant d'oublier. C'est l'état d'esprit que j'essaie d'appliquer
+      dans mes projets informatiques.
+    </p>
+  </div>
+
+  <div class="grid">
+    <article class="card reveal">
+      <div class="icon">⌘</div>
+      <h3>Esprit analytique</h3>
+      <p>J'aime démonter un problème en plusieurs parties, comprendre sa cause et trouver une solution claire.</p>
+    </article>
+
+    <article class="card reveal">
+      <div class="icon">⚡</div>
+      <h3>Apprentissage continu</h3>
+      <p>La technologie change vite. Je développe mes compétences par les cours, les labs, les CTF et les projets personnels.</p>
+    </article>
+
+    <article class="card reveal">
+      <div class="icon">◈</div>
+      <h3>Créativité technique</h3>
+      <p>Je cherche à rendre mes projets utiles, visuels et différents, tout en gardant une base technique solide.</p>
+    </article>
+  </div>
+</div>
+</section>
+
+<section id="competences">
+<div class="container">
+  <div class="section-head reveal">
+    <div>
+      <div class="kicker">02 / Compétences</div>
+      <h2>Mon arsenal<br>numérique.</h2>
+    </div>
+    <p>
+      Voici les domaines que je pratique ou que je développe actuellement.
+      Les pourcentages sont volontairement indicatifs et peuvent être adaptés à ton vrai niveau.
+    </p>
+  </div>
+
+  <div class="skill-layout">
+    <div class="card reveal">
+      <div class="icon">🛡</div>
+      <h3>Cybersécurité</h3>
+      <p>Fondamentaux de sécurité, reconnaissance, analyse réseau et compréhension des vulnérabilités dans des environnements de laboratoire.</p>
+      <div class="tags">
+        <span class="tag">Nmap</span><span class="tag">Wireshark</span>
+        <span class="tag">Burp Suite</span><span class="tag">OWASP</span><span class="tag">CTF</span>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <div class="skill-item">
+        <div class="skill-row"><span>Python / scripting</span><span>80%</span></div>
+        <div class="bar"><i style="--w:80%"></i></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span>Linux</span><span>78%</span></div>
+        <div class="bar"><i style="--w:78%"></i></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span>Réseaux</span><span>75%</span></div>
+        <div class="bar"><i style="--w:75%"></i></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span>Cybersécurité</span><span>70%</span></div>
+        <div class="bar"><i style="--w:70%"></i></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-row"><span>Web / JavaScript</span><span>68%</span></div>
+        <div class="bar"><i style="--w:68%"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:17px">
+    <article class="card reveal">
+      <div class="icon">&lt;/&gt;</div>
+      <h3>Programmation</h3>
+      <p>Python, Java, JavaScript, SQL, Bash et Git.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">JS</span><span class="tag">SQL</span></div>
+    </article>
+
+    <article class="card reveal">
+      <div class="icon">⌁</div>
+      <h3>Systèmes</h3>
+      <p>Linux, Windows, virtualisation, terminal et administration de base.</p>
+      <div class="tags"><span class="tag">Linux</span><span class="tag">Windows</span><span class="tag">Bash</span><span class="tag">VM</span></div>
+    </article>
+
+    <article class="card reveal">
+      <div class="icon">⌘</div>
+      <h3>Réseaux</h3>
+      <p>TCP/IP, DNS, routage, adressage, services réseau et analyse de trafic.</p>
+      <div class="tags"><span class="tag">TCP/IP</span><span class="tag">DNS</span><span class="tag">HTTP</span><span class="tag">OSI</span></div>
+    </article>
+  </div>
+</div>
+</section>
+
+<section id="projets">
+<div class="container">
+  <div class="section-head reveal">
+    <div>
+      <div class="kicker">03 / Projets</div>
+      <h2>Mes expériences<br>en construction.</h2>
+    </div>
+    <p>
+      Remplace ces projets par tes vrais travaux scolaires, GitHub, labs ou expériences.
+      Le design est déjà prêt pour les présenter.
+    </p>
+  </div>
+
+  <div class="grid projects">
+
+    <article class="card project reveal">
+      <div>
+        <div class="project-top"><span class="tag">CYBER LAB</span><span class="number">01</span></div>
+        <h3>Home Security Lab</h3>
+        <p>Laboratoire virtualisé pour expérimenter les réseaux, la journalisation, l'analyse de trafic et les mécanismes de sécurité.</p>
+        <div class="project-visual">[ NETWORK / SECURITY / LAB ]</div>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">Linux</span><span class="tag">VirtualBox</span><span class="tag">Wireshark</span></div>
+        <br><a class="project-link" href="#">Voir le projet ↗</a>
+      </div>
+    </article>
+
+    <article class="card project reveal">
+      <div>
+        <div class="project-top"><span class="tag">PYTHON</span><span class="number">02</span></div>
+        <h3>Network Scanner</h3>
+        <p>Outil Python de laboratoire permettant d'explorer des hôtes et services sur un réseau autorisé et de structurer les résultats.</p>
+        <div class="project-visual">[ PYTHON / SOCKETS / NETWORK ]</div>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Sockets</span><span class="tag">TCP/IP</span></div>
+        <br><a class="project-link" href="#">Voir le projet ↗</a>
+      </div>
+    </article>
+
+    <article class="card project reveal">
+      <div>
+        <div class="project-top"><span class="tag">WEB SECURITY</span><span class="number">03</span></div>
+        <h3>OWASP Playground</h3>
+        <p>Petit environnement pédagogique permettant de comprendre les vulnérabilités web courantes et leurs mesures de protection.</p>
+        <div class="project-visual">[ WEB / OWASP / SECURITY ]</div>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span><span class="tag">OWASP</span></div>
+        <br><a class="project-link" href="#">Voir le projet ↗</a>
+      </div>
+    </article>
+
+    <article class="card project reveal">
+      <div>
+        <div class="project-top"><span class="tag">AUTOMATION</span><span class="number">04</span></div>
+        <h3>Security Toolkit</h3>
+        <p>Collection personnelle de scripts pour automatiser des tâches répétitives dans mes environnements de laboratoire.</p>
+        <div class="project-visual">[ AUTOMATION / BASH / PYTHON ]</div>
+      </div>
+      <div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Bash</span><span class="tag">Git</span></div>
+        <br><a class="project-link" href="#">Voir le projet ↗</a>
+      </div>
+    </article>
+
+  </div>
+</div>
+</section>
+
+<!-- SECTION PARCOURS -->
+<section id="parcours">
+<div class="container">
+  <div class="section-head reveal">
+    <div>
+      <div class="kicker">04 / Parcours Académique</div>
+      <h2>AEC Cybersécurité<br><span class="gradient">Collège Universel</span></h2>
+    </div>
+    <p>
+      Programme spécialisé (LEA.E9) dispensé au Campus de Montréal, regroupant 19 cours pratiques répartis sur 4 sessions.
+    </p>
+  </div>
+
+  <!-- SESSION 1 -->
+  <div class="session-card reveal">
+    <h3>
+      <span>Session 1 — Fondations TI & Bases Algorithmiques</span>
+      <span class="session-badge">Réussie</span>
+    </h3>
+    <div class="course-grid">
+      <div class="course-box">
+        <span class="course-code">420-E01-UC</span>
+        <div class="course-title">Milieu du travail en informatique</div>
+        <p class="course-desc">Rôle du professionnel des TI, éthique, déontologie et dynamique d'entreprise.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E02-UC</span>
+        <div class="course-title">Programmation I : Intro aux algorithmes</div>
+        <p class="course-desc">Apprentissage de la logique d'algorithme et des structures de données de base.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E03-UC</span>
+        <div class="course-title">Mathématiques & Résolution de problèmes</div>
+        <p class="course-desc">Logique booléenne, calcul binaire/hexadécimal appliqués à l'informatique.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E04-UC</span>
+        <div class="course-title">Installation et gestion d'ordinateurs</div>
+        <p class="course-desc">Configuration matérielle, maintenance et gestion des systèmes d'exploitation.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E05-UC</span>
+        <div class="course-title">Veille technologique en cybersécurité</div>
+        <p class="course-desc">Méthodes de suivi actif des cybermenaces et vulnérabilités émergentes.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E06-UC</span>
+        <div class="course-title">Rapports techniques I : Traitement de texte</div>
+        <p class="course-desc">Rédaction professionnelle et documentation synthétique de dossiers techniques.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION 2 -->
+  <div class="session-card reveal">
+    <h3>
+      <span>Session 2 — Réseaux & Analyse des Vulnérabilités</span>
+      <span class="session-badge">Réussie</span>
+    </h3>
+    <div class="course-grid">
+      <div class="course-box">
+        <span class="course-code">420-E07-UC</span>
+        <div class="course-title">Rapports techniques II : Tableur</div>
+        <p class="course-desc">Analyse de données, suivi statistique et visualisations dynamiques.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E08-UC</span>
+        <div class="course-title">Programmation II : Débogage informatique</div>
+        <p class="course-desc">Analyse du code source, recherche d'erreurs et optimisation de la qualité logicielle.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E09-UC</span>
+        <div class="course-title">Réseautique et architecture logicielle</div>
+        <p class="course-desc">Modèles OSI/TCP-IP, protocoles de communication et architecture des réseaux.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E10-UC</span>
+        <div class="course-title">Conception d'un réseau informatique</div>
+        <p class="course-desc">Planification, adressage, routage et déploiement d'une infrastructure d'entreprise.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E11-UC</span>
+        <div class="course-title">Vulnérabilité et intrusion</div>
+        <p class="course-desc">Détection des failles, analyse de risques et principes de tests d'intrusion.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION 3 -->
+  <div class="session-card reveal">
+    <h3>
+      <span>Session 3 — Sécurité Avancée & Technologies Décentralisées</span>
+      <span class="session-badge">Réussie</span>
+    </h3>
+    <div class="course-grid">
+      <div class="course-box">
+        <span class="course-code">420-E12-UC</span>
+        <div class="course-title">Prévention et sécurité de l'information</div>
+        <p class="course-desc">Mise en place de politiques de sécurité et mécanismes de contrôle d'accès.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E13-UC</span>
+        <div class="course-title">Interconnexion de réseaux informatiques</div>
+        <p class="course-desc">Configuration et sécurisation des ponts de communication et routeurs.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E14-UC</span>
+        <div class="course-title">Blockchain et sécurité informatique</div>
+        <p class="course-desc">Principes des registres distribués, cryptographie et contrats intelligents.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E15-UC</span>
+        <div class="course-title">Sécurité des logiciels et des applications</div>
+        <p class="course-desc">Développement sécurisé, audit de code applicatif et protection contre les attaques Web.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION 4 -->
+  <div class="session-card reveal">
+    <h3>
+      <span>Session 4 — Protection des Infrastructures & Gestion de Crise</span>
+      <span class="session-badge" style="color:var(--pink); border-color:var(--pink);">En cours</span>
+    </h3>
+    <div class="course-grid">
+      <div class="course-box">
+        <span class="course-code">420-E16-UC</span>
+        <div class="course-title">Sécurité de l'infrastructure réseau local</div>
+        <p class="course-desc">Protection périmétrique, pare-feu, IDS/IPS et segmentation réseau.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E17-UC</span>
+        <div class="course-title">Soutien informatique et cybersécurité</div>
+        <p class="course-desc">Assistance aux utilisateurs, sensibilisation et résolution des incidents.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E18-UC</span>
+        <div class="course-title">Gestion de la menace interne</div>
+        <p class="course-desc">Prévention des fuites de données et gestion des accès privilégiés.</p>
+      </div>
+      <div class="course-box">
+        <span class="course-code">420-E19-UC</span>
+        <div class="course-title">Gestion d'un incident de cybersécurité</div>
+        <p class="course-desc">Procédures de réponse à une attaque : confinement, analyse et reprise.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+  <div class="section-head reveal">
+    <div>
+      <div class="kicker">05 / Contact</div>
+      <h2>On parle<br>tech ?</h2>
+    </div>
+    <p>Stage, projet étudiant, collaboration ou simplement une discussion sur la cybersécurité : écris-moi.</p>
+  </div>
+
+  <div class="contact">
+
+    <div class="card reveal">
+      <h3>Mes coordonnées</h3>
+
+      <div class="contact-line">
+        <div class="icon">✉</div>
+        <div><b>Email</b><span>ton.email@example.com</span></div>
+      </div>
+
+      <div class="contact-line">
+        <div class="icon">in</div>
+        <div><b>LinkedIn</b><span>linkedin.com/in/ton-profil</span></div>
+      </div>
+
+      <div class="contact-line">
+        <div class="icon">◉</div>
+        <div><b>GitHub</b><span>github.com/ton-pseudo</span></div>
+      </div>
+
+      <div class="contact-line">
+        <div class="icon">⌖</div>
+        <div><b>Localisation</b><span>Montréal, Québec</span></div>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <h3>Envoyer un message</h3>
+      <form onsubmit="sendMessage(event)">
+        <input type="text" placeholder="Ton nom" required>
+        <input type="email" placeholder="Ton adresse email" required>
+        <textarea placeholder="Écris ton message..." required></textarea>
+        <button class="btn btn-primary" type="submit">Envoyer →</button>
+        <small id="formMsg" style="color:var(--muted)"></small>
+      </form>
+    </div>
+
+  </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container footer-flex">
+    <span>© 2026 Christian MAKEMBE — Cybersecurity Portfolio</span>
+    <span>HTML · CSS · JavaScript · Built with curiosity ✦</span>
+  </div>
+</footer>
+
+<script>
+const menu=document.getElementById("menu");
+const nav=document.getElementById("navLinks");
+
+menu.addEventListener("click",()=>nav.classList.toggle("open"));
+
+document.querySelectorAll(".nav-links a").forEach(a=>{
+  a.addEventListener("click",()=>nav.classList.remove("open"));
+});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting) entry.target.classList.add("show");
+  });
+},{threshold:.12});
+
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+const sections=document.querySelectorAll("section[id]");
+const links=document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll",()=>{
+  let current="accueil";
+  sections.forEach(section=>{
+    if(window.scrollY >= section.offsetTop-180) current=section.id;
+  });
+  links.forEach(link=>{
+    link.classList.toggle("active",link.getAttribute("href")==="#"+current);
+  });
+});
+
+function sendMessage(e){
+  e.preventDefault();
+  document.getElementById("formMsg").textContent=
+    "Formulaire prêt — connecte-le à Formspree, EmailJS ou ton propre backend pour recevoir les messages.";
+}
+</script>
+
+</body>
+</html>
